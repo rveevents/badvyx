@@ -1,0 +1,449 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #ffffff;
+    background: #0a0a0f;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 25%, #9b59b6 60%, #2c3e50 100%);
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(155, 89, 182, 0.3) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.sun-animation {
+    position: absolute;
+    top: 20%;
+    right: 10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, #ff9966 0%, #ff5e62 50%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0.4;
+    animation: sunPulse 4s ease-in-out infinite;
+    z-index: 1;
+}
+
+@keyframes sunPulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.1); opacity: 0.6; }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    animation: fadeInUp 1s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.artist-name {
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 8px;
+    margin-bottom: 10px;
+    text-shadow: 0 4px 20px rgba(255, 107, 53, 0.5);
+    animation: fadeInUp 1s ease-out 0.2s backwards;
+}
+
+.tour-name {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    margin-bottom: 40px;
+    color: #f7931e;
+    animation: fadeInUp 1s ease-out 0.4s backwards;
+}
+
+.event-details {
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease-out 0.6s backwards;
+}
+
+.event-date, .event-platform {
+    font-size: 1.2rem;
+    margin: 5px 0;
+    color: #ddd;
+}
+
+.cta-button {
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: white;
+    border: none;
+    padding: 18px 60px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+    animation: fadeInUp 1s ease-out 0.8s backwards;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(255, 107, 53, 0.6);
+}
+
+.free-event {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #bbb;
+    animation: fadeInUp 1s ease-out 1s backwards;
+}
+
+/* About Section */
+.about {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, #0a0a0f 0%, #1a1a2e 100%);
+}
+
+.about h3 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #f7931e;
+}
+
+.about > .container > p {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+    font-size: 1.1rem;
+    color: #ccc;
+    line-height: 1.8;
+}
+
+.event-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.info-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(247, 147, 30, 0.2);
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(247, 147, 30, 0.5);
+    transform: translateY(-5px);
+}
+
+.info-card h4 {
+    font-size: 1.3rem;
+    color: #f7931e;
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    font-size: 1.1rem;
+    color: #ddd;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    margin: 5% auto;
+    padding: 40px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: #fff;
+}
+
+.modal-content h3 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+    color: #f7931e;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ddd;
+    font-weight: 500;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #f7931e;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.submit-button {
+    width: 100%;
+    background: linear-gradient(135deg, #ff6b35, #f7931e);
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4);
+}
+
+.submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.form-note {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 0.85rem;
+    color: #888;
+}
+
+/* Ticket Display */
+.ticket-display {
+    max-width: 600px;
+}
+
+#ticketContainer {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+.ticket {
+    color: #1a1a2e;
+    text-align: center;
+}
+
+.ticket-header {
+    border-bottom: 2px dashed #f7931e;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.ticket-event {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #ff6b35;
+    margin-bottom: 5px;
+}
+
+.ticket-artist {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.ticket-body {
+    padding: 20px 0;
+}
+
+.ticket-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 15px 0;
+    padding: 10px 0;
+}
+
+.ticket-label {
+    font-weight: 600;
+    color: #666;
+}
+
+.ticket-value {
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.ticket-qr {
+    margin: 30px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.ticket-footer {
+    border-top: 2px dashed #f7931e;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.ticket-company {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 600;
+}
+
+.ticket-id {
+    font-size: 0.75rem;
+    color: #999;
+    margin-top: 5px;
+}
+
+.download-button {
+    width: 100%;
+    background: linear-gradient(135deg, #9b59b6, #8e44ad);
+    color: white;
+    border: none;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.download-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(155, 89, 182, 0.4);
+}
+
+/* Footer */
+footer {
+    background: #0a0a0f;
+    padding: 30px 20px;
+    text-align: center;
+    color: #666;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .artist-name {
+        font-size: 3rem;
+        letter-spacing: 4px;
+    }
+    
+    .tour-name {
+        font-size: 1.5rem;
+    }
+    
+    .cta-button {
+        padding: 15px 40px;
+        font-size: 1rem;
+    }
+    
+    .about h3 {
+        font-size: 2rem;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        padding: 30px 20px;
+    }
+    
+    #ticketContainer {
+        padding: 20px;
+    }
+    
+    .ticket-event {
+        font-size: 1.5rem;
+    }
+}
