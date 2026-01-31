@@ -55,14 +55,19 @@ ticketForm.addEventListener('submit', async (e) => {
     try {
         const ticketId = generateTicketId();
         
+        // Check Firebase connection
+        console.log('Intentando conectar con Firebase...');
+        
         // Save to Firestore
-        await db.collection('tickets').add({
+        const docRef = await db.collection('tickets').add({
             robloxUser: robloxUser,
             discordUser: discordUser,
             email: email,
             timestamp: firebase.firestore.FieldValue.serverTimestamp(),
             ticketId: ticketId
         });
+        
+        console.log('Entrada guardada con ID:', docRef.id);
         
         // Generate and display ticket
         generateTicket(robloxUser, ticketId);
@@ -75,8 +80,19 @@ ticketForm.addEventListener('submit', async (e) => {
         ticketForm.reset();
         
     } catch (error) {
-        console.error('Error al guardar la entrada:', error);
-        alert('Hubo un error al procesar tu entrada. Por favor, inténtalo de nuevo.');
+        console.error('Error detallado:', error);
+        console.error('Código de error:', error.code);
+        console.error('Mensaje de error:', error.message);
+        
+        let errorMessage = 'Hubo un error al procesar tu entrada.';
+        
+        if (error.code === 'permission-denied') {
+            errorMessage = 'Error de permisos. Por favor, contacta al administrador para configurar las reglas de Firebase.';
+        } else if (error.code === 'unavailable') {
+            errorMessage = 'No se puede conectar con Firebase. Verifica tu conexión a internet.';
+        }
+        
+        alert(errorMessage + '\n\nDetalles técnicos: ' + error.message);
     } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = 'Confirmar Reserva';
@@ -153,20 +169,23 @@ function generateTicket(robloxUser, ticketId) {
 document.getElementById('downloadTicket').addEventListener('click', () => {
     const ticketElement = document.getElementById('ticketElement');
     
-    // Using html2canvas would be ideal here, but to keep it simple with pure JS:
-    // We'll use a workaround by converting the ticket to canvas
-    
-    // For production, include html2canvas library:
-    // <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    
     if (typeof html2canvas !== 'undefined') {
-        html2canvas(ticketElement).then(canvas => {
+        html2canvas(ticketElement, {
+            backgroundColor: '#ffffff',
+            scale: 2
+        }).then(canvas => {
             const link = document.createElement('a');
             link.download = 'entrada-aftersun-badvyx.png';
-            link.href = canvas.toDataURL();
+            link.href = canvas.toDataURL('image/png');
             link.click();
         });
     } else {
         alert('Para descargar la entrada, haz una captura de pantalla de este ticket.');
     }
+});
+
+// Test Firebase connection on page load
+window.addEventListener('load', () => {
+    console.log('Firebase inicializado correctamente');
+    console.log('Configuración:', firebase.app().options);
 });
