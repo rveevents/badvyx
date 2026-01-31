@@ -1,9 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <title>Mi web</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> BADVYX - After Sun Tour</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Hola mundo 🌍</h1>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="artist-name">BADVYX</h1>
+            <h2 class="tour-name">After Sun Tour</h2>
+            <div class="event-details">
+                <p class="event-date">10 de Noviembre · 10:00</p>
+                <p class="event-platform">Roblox</p>
+            </div>
+            <button class="cta-button" id="openTicketModal">Comprar Entrada</button>
+            <p class="free-event">Entrada gratuita</p>
+        </div>
+        <div class="sun-animation"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about">
+        <div class="container">
+            <h3>Experiencia única en Roblox</h3>
+            <p>Únete a la experiencia musical más esperada del año. BADVYX presenta After Sun, un evento virtual que fusiona música, arte y tecnología en una plataforma inmersiva.</p>
+            <div class="event-info-grid">
+                <div class="info-card">
+                    <h4>Fecha</h4>
+                    <p>10 de Noviembre</p>
+                </div>
+                <div class="info-card">
+                    <h4>Hora</h4>
+                    <p>10:00</p>
+                </div>
+                <div class="info-card">
+                    <h4>Plataforma</h4>
+                    <p>Roblox</p>
+                </div>
+                <div class="info-card">
+                    <h4>Organiza</h4>
+                    <p>RVE EVENTS</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ticket Modal -->
+    <div class="modal" id="ticketModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <h3>Reserva tu entrada</h3>
+            <form id="ticketForm">
+                <div class="form-group">
+                    <label for="robloxUser">Usuario de Roblox *</label>
+                    <input type="text" id="robloxUser" name="robloxUser" required placeholder="Tu nombre de usuario en Roblox">
+                </div>
+                <div class="form-group">
+                    <label for="discordUser">Usuario de Discord *</label>
+                    <input type="text" id="discordUser" name="discordUser" required placeholder="nombre#1234">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo Electrónico *</label>
+                    <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                </div>
+                <button type="submit" class="submit-button" id="submitBtn">Confirmar Reserva</button>
+                <p class="form-note">Los campos marcados con * son obligatorios</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Ticket Display Modal -->
+    <div class="modal" id="ticketDisplayModal">
+        <div class="modal-content ticket-display">
+            <span class="close-modal" id="closeTicketDisplay">&times;</span>
+            <h3>¡Tu entrada está lista!</h3>
+            <div id="ticketContainer"></div>
+            <button class="download-button" id="downloadTicket">Descargar Entrada</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 RVE EVENTS. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="firebase.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
