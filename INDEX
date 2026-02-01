@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Broma</title>
+  <style>
+    body {
+      background: black;
+      color: #00ff00;
+      font-family: monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1, p {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="contenido">
+    <h1 id="titulo">BIENVENIDO</h1>
+  </div>
+
+  <script>
+    const contenido = document.getElementById("contenido");
+
+    setTimeout(() => {
+      contenido.innerHTML += "<p>EXTRAYENDO IP...</p>";
+    }, 2000);
+
+    setTimeout(() => {
+      contenido.innerHTML += `
+        <p>
+          INFORMACIÓN DETECTADA:<br>
+          NOMBRE: DANI MARMOY<br>
+          CIUDAD: BARCELONA, MATARÓ
+        </p>
+      `;
+    }, 4000);
+
+    setTimeout(() => {
+      contenido.innerHTML += "<p>ES BROMA 😭 NO ME MATES NO HICE NADA</p>";
+    }, 6000);
+  </script>
+
+</body>
+</html>
